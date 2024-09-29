@@ -14,19 +14,7 @@ app.get('/', (req, res) => {
 });
 
 // MongoDB connection string (replace <your_mongo_url>)
-const PORT = process.env.PORT || 3000;
-
 mongoose.connect(process.env.MONGODB_URI)
-    .then(() => {
-        app.listen(PORT, () => {
-            console.log("Server started on port no." + PORT);
-
-        });
-    })
-    .catch((error) => {
-        console.log(error);
-    })
-
 // MongoDB schema and model for offer
 const offerSchema = new mongoose.Schema({
     offerId: Number,
@@ -64,3 +52,9 @@ app.post('/update-offer', async (req, res) => {
         res.status(500).json({ error: 'Error updating offer' });
     }
 });
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
+
