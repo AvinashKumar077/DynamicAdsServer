@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const dotenv = require("dotenv");
+dotenv.config();
 
 const app = express();
 app.use(cors());
@@ -12,7 +14,7 @@ app.get('/', (req, res) => {
 });
 
 // MongoDB connection string (replace <your_mongo_url>)
-mongoose.connect('mongodb+srv://dynamicUser:Av0779056@dynamicads.nhkpd.mongodb.net/?retryWrites=true&w=majority&appName=dynamicAds');
+mongoose.connect(process.env.MONGODB_URI);
 
 // MongoDB schema and model for offer
 const offerSchema = new mongoose.Schema({
